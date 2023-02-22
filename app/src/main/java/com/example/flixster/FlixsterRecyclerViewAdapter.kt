@@ -22,11 +22,16 @@ class FlixsterRecyclerViewAdapter(
         val mMovieImage: ImageView = mView.findViewById<View>(R.id.movieImage) as ImageView
 
         override fun toString(): String {
-            return mMovieTitle.toString() + " '" + mMovieDescription.text + "'"
+            return mMovieTitle.toString()
+            //+ " '" + mMovieDescription.text + "'"
         }
 
     }
-
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.fragment_flixster_movies, parent,false)
+        return MovieViewHolder(view)
+    }
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
 
@@ -35,7 +40,7 @@ class FlixsterRecyclerViewAdapter(
         holder.mMovieDescription.text = movie.description
 
         Glide.with(holder.mView)
-            .load(movie.bookImageUrl)
+            .load("https://image.tmdb.org/t/p/w500/"+ movie.bookImageUrl)
             .centerInside()
             .into(holder.mMovieImage)
 
@@ -50,10 +55,6 @@ class FlixsterRecyclerViewAdapter(
         return movies.size
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_flixster_movies, parent,false)
-        return MovieViewHolder(view)
-    }
+
 
 }

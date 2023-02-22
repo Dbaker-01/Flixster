@@ -7,9 +7,9 @@ class FlixsterMovies
     var title: String? = null
 
     @JvmField
-    @SerializedName("Description")
+    @SerializedName("overview")
     var description: String? = null
 
-    @SerializedName("book_image")
+    @SerializedName("poster_path")
     var bookImageUrl: String? = null
 }
